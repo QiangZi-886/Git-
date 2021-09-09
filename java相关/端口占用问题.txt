@@ -1,0 +1,6 @@
+win+R进入命令行模式输入：
+netstat -ano | findstr 1099
+查询占用1099端口的pid，假如是4399
+再使用命令：
+taskkill -f -pid 4399
+就可以杀死占用我们端口的进程了

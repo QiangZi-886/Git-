@@ -1,0 +1,5 @@
+这里只记录具体的方案：
+	首先是tomcat的server.xml文件，其中有一个    <Connector port="8080" protocol="HTTP/1.1"	   开头的标签，其中需要使用URIEncoding属性，指定值为UTF-8。
+	
+	然后乱码再可能出现的地方就是springMVC。首先是spring的xml配置文件，需要指定它的消息转换器，用的是spring框架内部的StringHttpMessageConveter组件，然后在内部使用supportedMediaTypes，然后再指定它的value值为"text/html;charset=UTF-8".
+	其次还需要在它的we.xml中使用它自带的filter过滤器，name为encodingFilter，class为它的内部CharacterEncodingFilter，标签配置完成之后使用init-param标签指定它的编码为utf-8。然后过滤器的mapping指定为所有请求/*
